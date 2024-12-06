@@ -70,6 +70,7 @@ article{
     <header>
         <a class="headMain" href="#user">User</a>
         <a class="headSub" href="#createUser">Create</a>
+        <a class="headSub" href="#getToken">Get Token</a>
         <a class="headSub" href="#getUser">Get</a>
         <a class="headSub" href="#resetEmail">Reset Password Email</a>
         <a class="headSub" href="#resetPass">Reset Password</a>
@@ -118,11 +119,37 @@ article{
                 <p class="propDesc">Confirmation password</p>
             </div>
 
-            <h3>Request Body</h3>
+            <h3>Response Body</h3>
             <div class="prop">
                 <p class="name">success</p>
                 <p class="type">true</p>
                 <p class="propDesc">Always '{success: true}' if no error</p>
+            </div>
+        </div>
+
+        <div id="getToken" class="route">
+            <h1>Get Auth Token</h1>
+            <p class="url">POST /user/token</p>
+            <p class="description">Retrieve JWT for user authentication</p>
+            
+            <h3>Request Body</h3>
+            <div class="prop">
+                <p class="name">email</p>
+                <p class="type">string</p>
+                <p class="propDesc">User email</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">password</p>
+                <p class="type">string</p>
+                <p class="propDesc">User password</p>
+            </div>
+
+            <h3>Response Body</h3>
+            <div class="prop">
+                <p class="name">token</p>
+                <p class="type">string</p>
+                <p class="propDesc">Token used for user authorization</p>
             </div>
         </div>
     </article>
