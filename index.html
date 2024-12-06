@@ -69,6 +69,10 @@ article{
 <body>
     <header>
         <a class="headMain" href="#user">User</a>
+        <a class="headSub" href="#createUser">Create</a>
+        <a class="headSub" href="#getUser">Get</a>
+        <a class="headSub" href="#resetEmail">Reset Password Email</a>
+        <a class="headSub" href="#resetPass">Reset Password</a>
     </header>
 
     <article>
@@ -87,6 +91,38 @@ article{
                 <p class="name">email</p>
                 <p class="type">string</p>
                 <p class="propDesc">User email address</p>
+            </div>
+        </div>
+
+        <div id="createUser" class="route">
+            <h1>Create User</h1>
+            <p class="url">POST /user</p>
+            <p class="description">Create a new user</p>
+
+            <h3>Request Body</h3>
+            <div class="prop">
+                <p class="name">email</p>
+                <p class="type">string</p>
+                <p class="propDesc">New user email address</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">password</p>
+                <p class="type">string</p>
+                <p class="propDesc">New user password</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">confirmPassword</p>
+                <p class="type">string</p>
+                <p class="propDesc">Confirmation password</p>
+            </div>
+
+            <h3>Request Body</h3>
+            <div class="prop">
+                <p class="name">success</p>
+                <p class="type">true</p>
+                <p class="propDesc">Always '{success: true}' if no error</p>
             </div>
         </div>
     </article>
