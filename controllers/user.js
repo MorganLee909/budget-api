@@ -29,7 +29,11 @@ const getToken = async (req, res, next)=>{
 }
 
 const getUser = async (req, res, next)=>{
-    console.log(res.locals.user);
+    try{
+        res.json(responseUser(res.locals.user));
+    }catch(e){
+        next(e);
+    }
 }
 
 /*
@@ -67,7 +71,7 @@ const createUser = async (data)=>{
 const responseUser = (user)=>{
     return {
         id: user._id,
-        email: email
+        email: user.email
     };
 }
 
