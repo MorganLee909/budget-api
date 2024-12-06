@@ -1,6 +1,8 @@
 import User from "../models/user.js";
 
 import {CustomError} from "../CustomError.js";
+import sendEmail from "../sendEmail.js";
+import resetPasswordEmail from "../email/resetPassword.js";
 import validate from "../validation/user.js";
 import bcrypt from "bcrypt";
 import crypto from "crypto";
@@ -38,7 +40,7 @@ const getUser = async (req, res, next)=>{
 
 const sendPasswordEmail = async (req, res, next)=>{
     try{
-        const user = getUserWithEmail(req.params.email.toLowerCase());
+        const user = await getUserWithEmail(req.params.email.toLowerCase());
         sendEmail(
             user.email,
             "Password reset request",
