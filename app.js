@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import compression from "compression";
 import cors from "cors";
 
+import {catchError} from "./CustomError.js";
+
 const app = express();
 global.cwd = import.meta.dirname;
 
@@ -15,6 +17,7 @@ mongoose.connect(mongoString);
 app.use(compression());
 app.use(express.json());
 app.use(cors());
+app.use(catchError);
 
 app.get("/", (req, res)=>{res.sendFile(`${global.cwd}/index.html`)});
 
