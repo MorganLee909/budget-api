@@ -179,6 +179,32 @@ article{
                 <p class="propDesc">Always '{success: true}' if no error</p>
             </div>
         </div>
+
+        <div id="resetPass" class="route">
+            <h1>Reset Password</h1>
+            <p class="url">PUT /user/:userId/password/:token</p>
+            <p class="description">Reset user password</p>
+
+            <h3>Request Body</h3>
+            <div class="prop">
+                <p class="name">password</p>
+                <p class="type">string</p>
+                <p class="propDesc">New user password</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">confirmPassword</p>
+                <p class="type">string</p>
+                <p class="propDesc">Confirmation password</p>
+            </div>
+
+            <h3>Response Body</h3>
+            <div class="prop">
+                <p class="name">success</p>
+                <p class="type">true</p>
+                <p class="propDesc">Always '{success: true}' if no error</p>
+            </div>
+        </div>
     </article>
 </body>
 </html>
