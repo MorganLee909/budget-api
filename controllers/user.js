@@ -36,6 +36,18 @@ const getUser = async (req, res, next)=>{
     }
 }
 
+const sendPasswordEmail = async (req, res, next)=>{
+    try{
+        const user = getUserWithEmail(req.params.email.toLowerCase());
+        sendEmail(
+            user.email,
+            "Password reset request",
+            resetPasswordEmail(user._id, user.token)
+        );
+        res.json({success: true});
+    }catch(e){next(e)}
+}
+
 /*
  Retrieve user from email address
 
@@ -123,5 +135,6 @@ const createJWT = (user)=>{
 export {
     create,
     getToken,
-    getUser
+    getUser,
+    sendPasswordEmail
 };
