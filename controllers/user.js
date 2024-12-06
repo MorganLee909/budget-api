@@ -28,6 +28,10 @@ const getToken = async (req, res, next)=>{
     }
 }
 
+const getUser = async (req, res, next)=>{
+    console.log(res.locals.user);
+}
+
 /*
  Retrieve user from email address
 
@@ -114,5 +118,6 @@ const createJWT = (user)=>{
 
 export {
     create,
-    getToken
+    getToken,
+    getUser
 };
