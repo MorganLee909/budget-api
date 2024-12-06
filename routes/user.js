@@ -3,7 +3,8 @@ import {
     create,
     getToken,
     getUser,
-    sendPasswordEmail
+    sendPasswordEmail,
+    resetPassword
 } from "../controllers/user.js";
 
 export default (app)=>{
@@ -11,4 +12,5 @@ export default (app)=>{
     app.post("/user/token", getToken);
     app.get("/user/:userId", userAuth, getUser);
     app.get("/user/password/:email", sendPasswordEmail);
+    app.put("/user/:userId/password/:token", resetPassword);
 }

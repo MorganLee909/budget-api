@@ -50,6 +50,30 @@ const sendPasswordEmail = async (req, res, next)=>{
     }catch(e){next(e)}
 }
 
+const resetPassword = async (req, res, next)=>{
+    try{
+        validate(req.body);
+        const user = await getUserWithId(req.params.userId);
+        verifyToken(user.token, req.params.token);
+        user.password = await createPasswordHash(req.body.password);
+        user.token = createNewToken();
+        user.save();
+        res.json({success: true});
+    }catch(e){next(e)}
+}
+
+/*
+ Retrieve user with ID
+
+ @param {String} id - User ID
+ @return {User} User object
+ */
+const getUserWithId = async (id)=>{
+    const user = await User.findOne({_id: id});
+    if(!user) throw new CustomError(400, "No user with this ID");
+    return user;
+}
+
 /*
  Retrieve user from email address
 
@@ -134,9 +158,14 @@ const createJWT = (user)=>{
     }, process.env.JWT_SECRET);
 }
 
+const verifyToken = (userToken, inputToken)=>{
+    if(userToken !== inputToken) throw new CustomError(401, "Unauthorized");
+}
+
 export {
     create,
     getToken,
     getUser,
-    sendPasswordEmail
+    sendPasswordEmail,
+    resetPassword
 };
