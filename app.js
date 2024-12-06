@@ -5,6 +5,8 @@ import cors from "cors";
 
 import {catchError} from "./CustomError.js";
 
+import userRoutes from "./routes/user.js";
+
 const app = express();
 global.cwd = import.meta.dirname;
 
@@ -17,6 +19,9 @@ mongoose.connect(mongoString);
 app.use(compression());
 app.use(express.json());
 app.use(cors());
+
+userRoutes(app);
+
 app.use(catchError);
 
 app.get("/", (req, res)=>{res.sendFile(`${global.cwd}/index.html`)});

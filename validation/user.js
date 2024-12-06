@@ -11,8 +11,8 @@ import {CustomError} from "../CustomError.js";
  */
 export default (data)=>{
     if(data.email){
-        if(typeof(email) !== "string") throw new CustomError(400, "Invalid email");
-        if(!/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
+        if(typeof(data.email) !== "string") throw new CustomError(400, "Invalid email");
+        if(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(data.email) !== true){
             throw new CustomError(400, "Invalid email");
         }
     }
