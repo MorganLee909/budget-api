@@ -2,6 +2,7 @@ import Account from "../models/account.js";
 
 import {CustomError} from "../CustomError.js";
 import validate from "../validation/account.js";
+import mongoose from "mongoose"
 
 const create = async (req, res, next)=>{
     try{
@@ -28,7 +29,17 @@ const addIncome = async (req, res, next)=>{
         const income = createIncome(req.body.name, req.body.amount);
         account.income.push(income);
         await account.save();
-        res.json(income);
+        res.json(responseIncome(income));
+    }catch(e){next(e)}
+}
+
+const removeIncome = async (req, res, next)=>{
+    try{
+        const account = await Account.findOne({_id: req.params.accountId});
+        validateOwnership(account, res.locals.user);
+        deleteIncome(account, req.params.incomeId);
+        await account.save();
+        res.json({success: true});
     }catch(e){next(e)}
 }
 
@@ -76,13 +87,46 @@ const validateOwnership = (account, user)=>{
  */
 const createIncome = (name, amount)=>{
     return {
+        _id: new mongoose.Types.ObjectId(),
         name: name,
         amount: amount
+    };
+}
+
+/*
+ Remove an income from an account
+
+ @param {Account} account - Account to remove income from
+ @param {String} incomeId - ID of the income to be removed
+ @param {Account} Account with removed income
+ */
+const deleteIncome = (account, incomeId)=>{
+    for(let i = 0; i < account.income.length; i++){
+        if(account.income[i]._id.toString() === incomeId){
+            account.income.splice(i, 1);
+            break;
+        }
+    }
+    return account;
+}
+
+/*
+ Return a formatted income for response
+
+ @param {Income} income - Income object
+ @return {Object} Formatted income
+ */
+const responseIncome = (income)=>{
+    return {
+        id: income._id,
+        name: income.name,
+        amount: income.amount
     };
 }
 
 export {
     create,
     getAccounts,
-    addIncome
+    addIncome,
+    removeIncome
 }
