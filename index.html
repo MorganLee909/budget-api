@@ -234,6 +234,33 @@ article{
                 <p class="propDesc">Current balance on the account</p>
             </div>
         </div>
+
+        <div id="createAccount" class="route">
+            <h1>Create</h1>
+            <p class="url">POST /account</p>
+            <p>Requires User Auth</p>
+            <p class="description"> Create a new account</p>
+
+            <h3>Request Body</h3>
+            <div class="prop">
+                <p class="name">name</p>
+                <p class="type">string</p>
+                <p class="propDesc">Name of the account</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">balance</p>
+                <p class="type">number</p>
+                <p class="propDesc">Integer representing current balance on account in cents</p>
+            </div>
+
+            <h3>Response Body</h3>
+            <div class="prop">
+                <p class="name">N/A</p>
+                <p class="type"><a href="#account">Account</a></p>
+                <p class="propDesc">Account object</p>
+            </div>
+        </div>
     </article>
 </body>
 </html>
