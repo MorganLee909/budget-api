@@ -83,7 +83,7 @@ article{
         <a class="headMain" href="#bill">Bill</a>
         <a class="headSub" href="#addBill">Add Bill</a>
         <a class="headSub" href="#removeBill">Remove Bill</a>
-
+        <a class="headMain" href="#allowance">Allowance</a>
         <a class="headSub" href="#addAllowance">Add allowance</a>
         <a class="headSub" href="#removeAllowance">Remove Allowance</a>
     </header>
@@ -397,6 +397,36 @@ article{
                 <p class="name">N/A</p>
                 <p class="type"><a href="#bill">Bill</a></p>
                 <p class="propDesc">Bill object</p>
+            </div>
+        </div>
+
+        <div id="allowance" class="route">
+            <h1>Allowance</h1>
+            <p class="description">An allowance for a certain expenditure. Can be as a percent or a fixed amount.</p>
+            
+            <h3>Properties</h3>
+            <div class="prop">
+                <p class="name">id</p>
+                <p class="type">string</p>
+                <p class="propDesc">Unique ID of the allowance</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">name</p>
+                <p class="type">string</p>
+                <p class="propDesc">Name of the allowance</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">amount</p>
+                <p class="type">number</p>
+                <p class="propDesc">Integer representing the amount of the allowance. This depends on the 'isPercent' property. If false, this is integer represents cents. If true, it represents a percent of all income.</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">isPercent</p>
+                <p class="type">boolean</p>
+                <p class="propDesc">If true, 'amount' represents a percent. If false 'amount' represents a fixed amount.</p>
             </div>
         </div>
     </article>
