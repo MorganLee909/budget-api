@@ -43,6 +43,18 @@ const removeIncome = async (req, res, next)=>{
     }catch(e){next(e)}
 }
 
+const addBill = async (req, res, next)=>{
+    try{
+        validate(req.body);
+        const account = await Account.findOne({_id: req.params.accountId});
+        validateOwnership(account, res.locals.user);
+        const bill = createBill(req.body.name, req.body.amount);
+        account.bills.push(bill);
+        await account.save();
+        res.json(responseBill(bill));
+    }catch(e){next(e)}
+}
+
 /*
  Create a new Account object
 
@@ -94,6 +106,21 @@ const createIncome = (name, amount)=>{
 }
 
 /*
+ Create a new Bill object
+
+ @param {String} name - Name of the bill
+ @param {Number} amount - Integer representing income amount in cents
+ @return {Bill} New Bill object
+ */
+const createBill = (name, amount)=>{
+    return {
+        _id: new mongoose.Types.ObjectId(),
+        name: name,
+        amount: amount
+    };
+}
+
+/*
  Remove an income from an account
 
  @param {Account} account - Account to remove income from
@@ -124,9 +151,24 @@ const responseIncome = (income)=>{
     };
 }
 
+/*
+ Return a formatted bill for response
+
+ @param {Bill} bill - Bill object
+ @return {Object} Formatted bill
+ */
+const responseBill = (bill)=>{
+    return {
+        id: bill._id,
+        name: bill.name,
+        amount: bill.amount
+    };
+}
+
 export {
     create,
     getAccounts,
     addIncome,
-    removeIncome
+    removeIncome,
+    addBill
 }
