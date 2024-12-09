@@ -76,13 +76,14 @@ article{
         <a class="headSub" href="#resetPass">Reset Password</a>
         <a class="headMain" href="#account">Account</a>
         <a class="headSub" href="#createAccount">Create</a>
-        <a class="headSub" href="#getAccount">Get</a>
-        <a class="headSub" href="#updateAccount">Update</a>
-        <a class="headSub" href="#deleteAccount">Delete</a>
+        <a class="headSub" href="#getAccounts">Get</a>
+
         <a class="headSub" href="#addIncome">Add Income</a>
         <a class="headSub" href="#removeIncome">Remove Income</a>
+
         <a class="headSub" href="#addBill">Add Bill</a>
         <a class="headSub" href="#removeBill">Remove Bill</a>
+
         <a class="headSub" href="#addAllowance">Add allowance</a>
         <a class="headSub" href="#removeAllowance">Remove Allowance</a>
     </header>
@@ -259,6 +260,19 @@ article{
                 <p class="name">N/A</p>
                 <p class="type"><a href="#account">Account</a></p>
                 <p class="propDesc">Account object</p>
+            </div>
+        </div>
+
+        <div id="getAccounts" class="route">
+            <h1>Get Accounts</h1>
+            <p class="url">GET /account/user/:userId</p>
+            <p>User Auth Required</p>
+
+            <h3>Response Body</h3>
+            <div class="prop">
+                <p class="name">N/A</p>
+                <p class="type">[<a href="#account">Account</a>]</p>
+                <p class="propDesc">A list containing accounts for the user. Contains full account data.</p>
             </div>
         </div>
     </article>
