@@ -429,6 +429,39 @@ article{
                 <p class="propDesc">If true, 'amount' represents a percent. If false 'amount' represents a fixed amount.</p>
             </div>
         </div>
+
+        <div id="createAllowance" class="route">
+            <h1>Create Allowance</h1>
+            <p class="url">POST /account/:accountId/allowance</p>
+            <p>User Auth Required</p>
+            <p class="description">Create a new allowance</p>
+
+            <h3>Request Body</h3>
+            <div class="prop">
+                <p class="name">name</p>
+                <p class="type">string</p>
+                <p class="propDesc">Name of the allowance</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">amount</p>
+                <p class="type">number</p>
+                <p class="propDesc">Integer representing amount</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">isPercent</p>
+                <p class="type">boolean</p>
+                <p class="propDesc">Determines whether amount is a fixed amount or a percent</p>
+            </div>
+
+            <h3>Response Body</h3>
+            <div class="prop">
+                <p class="name">N/A</p>
+                <p class="type"><a href="#allowance">Allowance</a></p>
+                <p class="propDesc">Allowance object</p>
+            </div>
+        </div>
     </article>
 </body>
 </html>
