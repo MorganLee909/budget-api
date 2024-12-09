@@ -65,6 +65,18 @@ const removeBill = async (req, res, next)=>{
     }catch(e){next(e)}
 }
 
+const addAllowance = async (req, res, next)=>{
+    try{
+        validate(req.body);
+        const account = await Account.findOne({_id: req.params.accountId});
+        validateOwnership(account, res.locals.user);
+        const allowance = createAllowance(req.body.name, req.body.amount, req.body.isPercent);
+        account.allowances.push(allowance);
+        await account.save();
+        res.json(responseAllowance(allowance));
+    }catch(e){next(e)}
+}
+
 /*
  Create a new Account object
 
@@ -131,6 +143,23 @@ const createBill = (name, amount)=>{
 }
 
 /*
+ Create a new Allowance object
+
+ @param {String} name - Name of the allowance
+ @param {Number} amount - Integer representing allowance amount
+ @param {Boolean} isPercent - Determines whether amount is a percent or fixed amount
+ @return {Allowance} New Allowance object
+ */
+const createAllowance = (name, amount, isPercent)=>{
+    return {
+        _id: new mongoose.Types.ObjectId(),
+        name: name,
+        amount: amount,
+        isPercent: isPercent
+    };
+}
+
+/*
  Remove an income from an account
 
  @param {Account} account - Account to remove income from
@@ -192,11 +221,27 @@ const responseBill = (bill)=>{
     };
 }
 
+/*
+ Return a formatted allowance for response
+
+ @param {Allowance} allowance - Allowance object
+ @return {Object} Formatted Allowance
+ */
+const responseAllowance = (allowance)=>{
+    return {
+        id: allowance._id,
+        name: allowance.name,
+        amount: allowance.amount,
+        isPercent: allowance.isPercent
+    };
+}
+
 export {
     create,
     getAccounts,
     addIncome,
     removeIncome,
     addBill,
-    removeBill
+    removeBill,
+    addAllowance
 }

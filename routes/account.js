@@ -5,7 +5,8 @@ import {
     addIncome,
     removeIncome,
     addBill,
-    removeBill
+    removeBill,
+    addAllowance
 } from "../controllers/account.js";
 
 export default (app)=>{
@@ -17,4 +18,6 @@ export default (app)=>{
 
     app.post("/account/:accountId/bill", userAuth, addBill);
     app.delete("/account/:accountId/bill/:billId", userAuth, removeBill);
+
+    app.post("/account/:accountId/allowance", userAuth, addAllowance);
 }

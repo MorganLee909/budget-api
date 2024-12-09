@@ -23,4 +23,8 @@ export default (data)=>{
         if(typeof(data.amount) !== "number") throw new CustomError(400, "Invalid amount");
         if(!Number.isInteger(data.amount)) throw new CustomError(400, "Invalid amount");
     }
+
+    if(data.isPercent){
+        if(typeof(data.isPercent) !== "boolean") throw new CustomError(400, "Invalid isPercent");
+    }
 }
