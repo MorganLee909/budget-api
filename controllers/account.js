@@ -6,15 +6,15 @@ import validate from "../validation/account.js";
 const create = async (req, res, next)=>{
     try{
         validate(req.body);
-        const account = createAccount(req.body, res.locals.user._id);
-        await account.save();
+        const account = createAccount(req.body);
+        res.locals.user.accounts.push(account._id);
+        await Promise.all(account.save(), res.locals.user.save());
         res.json(account);
     }catch(e){next(e)}
 }
 
-const createAccount = (data, userId)=>{
+const createAccount = (data)=>{
     return new Account({
-        user: userId,
         name: data.name,
         balance: data.balance,
         income: [],

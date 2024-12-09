@@ -12,7 +12,8 @@ const UserSchema = new mongoose.Schema({
     token: {
         type: String,
         required: true
-    }
+    },
+    accounts: [mongoose.Schema.Types.ObjectId]
 });
 
 export default mongoose.model("user", UserSchema);

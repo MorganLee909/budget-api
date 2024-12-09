@@ -96,7 +96,8 @@ const createUser = async (data)=>{
     return new User({
         email: data.email.toLowerCase(),
         password: await createPasswordHash(data.password),
-        token: createNewToken()
+        token: createNewToken(),
+        accounts: []
     });
 }
 
