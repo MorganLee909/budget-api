@@ -358,6 +358,33 @@ article{
                 <p class="propDesc">Integer representing the amount of the bill</p>
             </div>
         </div>
+
+        <div id="addBill" class="route">
+            <h1>Add Bill</h1>
+            <p class="url">POST /account/:accountId/bill</p>
+            <p>User Auth Required</p>
+            <p class="description">Create a new bill</p>
+
+            <h3>Request Body</h3>
+            <div class="prop">
+                <p class="name">name</p>
+                <p class="type">string</p>
+                <p class="propDesc">Name of the bill</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">amount</p>
+                <p class="type">number</p>
+                <p class="propDesc">Integer representing the amount of the bill in cents</p>
+            </div>
+
+            <h3>Response Body</h3>
+            <div class="prop">
+                <p class="name">N/A</p>
+                <p class="type"><a href="#bill">Bill</a></p>
+                <p class="propDesc">Bill object</p>
+            </div>
+        </div>
     </article>
 </body>
 </html>
