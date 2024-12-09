@@ -293,6 +293,33 @@ article{
                 <p class="propDesc">Integer representing the amount in cents of the income source.</p>
             </div>
         </div>
+
+        <div id="addIncome" class="route">
+            <h1>Add Income</h1>
+            <p class="url">POST /account/:accountId/income</p>
+            <p>User Auth Required</p>
+            <p class="description">Create a new income source on an account</p>
+
+            <h3>Request Body</h3>
+            <div class="prop">
+                <p class="name">name</p>
+                <p class="type">string</p>
+                <p class="propDesc">Name of the income</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">amount</p>
+                <p class="type">number</p>
+                <p class="propDesc">Integer respresenting income amount in cents</p>
+            </div>
+
+            <h3>Response Body</h3>
+            <div class="prop">
+                <p class="name">N/A</p>
+                <p class="type"><a href="#income">Income</a></p>
+                <p class="propDesc">Income object</p>
+            </div>
+        </div>
     </article>
 </body>
 </html>
