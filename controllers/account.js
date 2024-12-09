@@ -55,6 +55,16 @@ const addBill = async (req, res, next)=>{
     }catch(e){next(e)}
 }
 
+const removeBill = async (req, res, next)=>{
+    try{
+        const account = await Account.findOne({_id: req.params.accountId});
+        validateOwnership(account, res.locals.user);
+        deleteBill(account, req.params.billId);
+        await account.save();
+        res.json({success: true});
+    }catch(e){next(e)}
+}
+
 /*
  Create a new Account object
 
@@ -138,6 +148,23 @@ const deleteIncome = (account, incomeId)=>{
 }
 
 /*
+ Remove a bill from an account
+
+ @param {Account} account - Account to remove bill from
+ @param {String} billId - ID of the bill to be removed
+ @param {Account} Account with removed bill
+ */
+const deleteBill = (account, billId)=>{
+    for(let i = 0; i < account.bills.length; i++){
+        if(account.bills[i]._id.toString() === billId){
+            account.bills.splice(i, 1);
+            break;
+        }
+    }
+    return account;
+}
+
+/*
  Return a formatted income for response
 
  @param {Income} income - Income object
@@ -170,5 +197,6 @@ export {
     getAccounts,
     addIncome,
     removeIncome,
-    addBill
+    addBill,
+    removeBill
 }

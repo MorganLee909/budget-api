@@ -4,7 +4,8 @@ import {
     getAccounts,
     addIncome,
     removeIncome,
-    addBill
+    addBill,
+    removeBill
 } from "../controllers/account.js";
 
 export default (app)=>{
@@ -15,4 +16,5 @@ export default (app)=>{
     app.delete("/account/:accountId/income/:incomeId", userAuth, removeIncome);
 
     app.post("/account/:accountId/bill", userAuth, addBill);
+    app.delete("/account/:accountId/bill/:billId", userAuth, removeBill);
 }
