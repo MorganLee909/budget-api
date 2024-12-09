@@ -6,6 +6,7 @@ import cors from "cors";
 import {catchError} from "./CustomError.js";
 
 import userRoutes from "./routes/user.js";
+import accountRoutes from "./routes/account.js";
 
 const app = express();
 global.cwd = import.meta.dirname;
