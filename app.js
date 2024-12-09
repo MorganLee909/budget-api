@@ -22,6 +22,7 @@ app.use(express.json());
 app.use(cors());
 
 userRoutes(app);
+accountRoutes(app);
 
 app.use(catchError);
 
