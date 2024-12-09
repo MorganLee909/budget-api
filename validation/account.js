@@ -20,7 +20,7 @@ export default (data)=>{
     }
 
     if(data.amount){
-        if(typeof(data.name) !== "number") throw new CustomError(400, "Invalid amount");
+        if(typeof(data.amount) !== "number") throw new CustomError(400, "Invalid amount");
         if(!Number.isInteger(data.amount)) throw new CustomError(400, "Invalid amount");
     }
 }
