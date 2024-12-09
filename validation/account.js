@@ -18,4 +18,9 @@ export default (data)=>{
         if(typeof(data.balance) !== "number") throw new CustomError(400, "Invalid balance");
         if(!Number.isInteger(data.balance)) throw new CustomError(400, "Invalid balance");
     }
+
+    if(data.amount){
+        if(typeof(data.name) !== "number") throw new CustomError(400, "Invalid amount");
+        if(!Number.isInteger(data.amount)) throw new CustomError(400, "Invalid amount");
+    }
 }

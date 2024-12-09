@@ -20,6 +20,18 @@ const getAccounts = async (req, res, next)=>{
     }catch(e){next(e)}
 }
 
+const addIncome = async (req, res, next)=>{
+    try{
+        validate(req.body);
+        const account = await Account.findOne({_id: req.params.accountId});
+        validateOwnership(account, res.locals.user);
+        const income = createIncome(account, req.body);
+        account.income.push(income);
+        await account.save();
+        res.json(income);
+    }catch(e){next(e)}
+}
+
 /*
  Create a new Account object
 
@@ -38,5 +50,6 @@ const createAccount = (name, balance)=>{
 
 export {
     create,
-    getAccounts
+    getAccounts,
+    addIncome
 }
