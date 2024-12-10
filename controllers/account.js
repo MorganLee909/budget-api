@@ -77,6 +77,16 @@ const addAllowance = async (req, res, next)=>{
     }catch(e){next(e)}
 }
 
+const removeAllowance = async (req, res, next)=>{
+    try{
+        const account = await Account.findOne({_id: req.params.accountId});
+        validateOwnership(account, res.locals.user);
+        deleteAllowance(account, req.params.allowanceId);
+        await account.save();
+        res.json({success: true});
+    }catch(e){next(e)}
+}
+
 /*
  Create a new Account object
 
@@ -193,6 +203,16 @@ const deleteBill = (account, billId)=>{
     return account;
 }
 
+const deleteAllowance = (account, allowanceId)=>{
+    for(let i = 0; i < account.allowances.length; i++){
+        if(account.allowances[i]._id.toString() === allowanceId){
+            account.allowances.splice(i, 1);
+            break;
+        }
+    }
+    return account;
+}
+
 /*
  Return a formatted income for response
 
@@ -243,5 +263,6 @@ export {
     removeIncome,
     addBill,
     removeBill,
-    addAllowance
+    addAllowance,
+    removeAllowance
 }
