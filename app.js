@@ -7,6 +7,7 @@ import {catchError} from "./CustomError.js";
 
 import userRoutes from "./routes/user.js";
 import accountRoutes from "./routes/account.js";
+import transactionRoutes from "./routes/transaction.js";
 
 const app = express();
 global.cwd = import.meta.dirname;
@@ -23,6 +24,7 @@ app.use(cors());
 
 userRoutes(app);
 accountRoutes(app);
+transactionRoutes(app);
 
 app.use(catchError);
 
