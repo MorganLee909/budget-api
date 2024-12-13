@@ -87,6 +87,7 @@ article{
         <a class="headSub" href="#addAllowance">Add allowance</a>
         <a class="headSub" href="#removeAllowance">Remove Allowance</a>
         <a class="headMain" href="#transaction">Transaction</a>
+        <a class="headSub" href="#createTransaction">Create</p>
     </header>
 
     <article>
@@ -517,6 +518,62 @@ article{
                 <p class="name">note</p>
                 <p class="type">String</p>
                 <p class="propDesc">Any notes about the transaction from the user</p>
+            </div>
+        </div>
+
+        <div id="createTransaction" class="route">
+            <h1>Create</h1>
+            <p class="url">POST /transaction</p>
+            <p>User Auth Required</p>
+            <p class="description">Create a new transaction</p>
+
+            <h3>Request Body</h3>
+            <div class="prop">
+                <p class="name">account</p>
+                <p class="type">String</p>
+                <p class="propDesc">ID of the account the transaction belongs to</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">tags</p>
+                <p class="type">[String]</p>
+                <p class="propDesc">Zero or more strings to use for searching purposes</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">amount</p>
+                <p class="type">Number</p>
+                <p class="propDesc">Integer representing the amount of the transaction in cents</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">location</p>
+                <p class="type">String</p>
+                <p class="propDesc">Location of the transaction</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">date.year</p>
+                <p class="type">Number</p>
+                <p class="propDesc">Integer between 1970 and 2100 representing the year of the transaction</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">date.month</p>
+                <p class="type">Number</p>
+                <p class="propDesc">Integer between 0 and 11 representing the month of the transaction</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">date.day</p>
+                <p class="type">Number</p>
+                <p class="propDesc">Integer between 0 and 31 representing the day of the transaction</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">note</p>
+                <p class="type">String</p>
+                <p class="propDesc">Any note the user wants to add to the transaction</p>
             </div>
         </div>
     </article>

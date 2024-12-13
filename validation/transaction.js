@@ -36,18 +36,21 @@ export default (data)=>{
     if(data.date){
         if(!data.date.year) throw new CustomError(400, "Date must include year");
         if(typeof(data.date.year) !== "number") throw new CustomError(400, "Invalid year");
+        if(!Number.isInteger(data.date.year)) throw new CustomError(400, "Invalid year");
         if(data.date.year < 1970 || data.date.year > 2100){
             throw new CustomError(400, "Invalid year");
         }
 
         if(!data.date.month) throw new CustomError(400, "Date must include month");
         if(typeof(data.date.month) !== "number") throw new CustomError(400, "Invalid month");
+        if(!Number.isInteger(data.date.month)) throw new CustomError(400, "Invalid month");
         if(data.date.month < 0 || data.date.month > 11){
             throw new CustomError(400, "Invalid month");
         }
 
         if(!data.date.day) throw new CustomError(400, "Date must include a day number");
         if(typeof(data.date.day) !== "number") throw new CustomError(400, "Invalid day");
+        if(!Number.isInteger(data.date.day)) throw new CustomError(400, "Invalid day");
         if(data.date.day < 0 || data.date.day > 31){
             throw new CustomError(400, "Invalid day");
         }
