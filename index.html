@@ -86,6 +86,7 @@ article{
         <a class="headMain" href="#allowance">Allowance</a>
         <a class="headSub" href="#addAllowance">Add allowance</a>
         <a class="headSub" href="#removeAllowance">Remove Allowance</a>
+        <a class="headMain" href="#transaction">Transaction</a>
     </header>
 
     <article>
@@ -474,6 +475,48 @@ article{
                 <p class="name">success</p>
                 <p class="type">true</p>
                 <p class="propDesc">Always '{success: true}' if no error</p>
+            </div>
+        </div>
+
+        <div id="transaction" class="route">
+            <h1>Transaction</h1>
+            <p class="description">A transaction associated with an account</p>
+
+            <h3>Properties</h3>
+            <div class="prop">
+                <p class="name">id</p>
+                <p class="type">string</p>
+                <p class="propDesc">Unique id of the transaction</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">tags</p>
+                <p class="type">[string]</p>
+                <p class="propDesc">String tags for searching</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">amount</p>
+                <p class="type">number</p>
+                <p class="propDesc">Integer representing value of transaction in cents</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">location</p>
+                <p class="type">string</p>
+                <p class="propDesc">Location of the transaction</p>
+            </div>
+            
+            <div class="prop">
+                <p class="name">date</p>
+                <p class="type">Date</p>
+                <p class="propDesc">Date of the transaction</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">note</p>
+                <p class="type">String</p>
+                <p class="propDesc">Any notes about the transaction from the user</p>
             </div>
         </div>
     </article>
