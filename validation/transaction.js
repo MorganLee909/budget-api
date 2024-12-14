@@ -59,4 +59,16 @@ export default (data)=>{
     if(data.note){
         if(typeof(data.note) !== "string") throw new CustomError(400, "Invalid note");
     }
+
+    if(data.category){
+        if(!data.category.type) throw new CustomError(400, "Category must contain a type");
+        if(typeof(data.category.type) !== "string") throw new CustomError(400, "Invalid category type");
+        const types = ["income", "bill", "allowance", "discretionary"];
+        if(!types.includes(data.category.type)) throw new CustomError(400, "Invalid category type");
+        if((
+            data.category.type === "income" ||
+            data.category.type === "bill" ||
+            data.category.type === "allowance"
+        ) && !data.category.name) throw new CustomError(400, "Category requires a name");
+    }
 }

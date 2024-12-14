@@ -32,6 +32,12 @@ const TransactionSchema = new mongoose.Schema({
     note: {
         type: String,
         required: false
+    },
+    category: {
+        //enum: income, bill, allowance, discretionary
+        type: {type: String},
+        //Not required for type=descretionary
+        name: String
     }
 });
 

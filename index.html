@@ -87,7 +87,7 @@ article{
         <a class="headSub" href="#addAllowance">Add allowance</a>
         <a class="headSub" href="#removeAllowance">Remove Allowance</a>
         <a class="headMain" href="#transaction">Transaction</a>
-        <a class="headSub" href="#createTransaction">Create</p>
+        <a class="headSub" href="#createTransaction">Create</a>
     </header>
 
     <article>
@@ -519,6 +519,18 @@ article{
                 <p class="type">String</p>
                 <p class="propDesc">Any notes about the transaction from the user</p>
             </div>
+
+            <div class="prop">
+                <p class="name">category.type</p>
+                <p class="type">String</p>
+                <p class="propDesc">One of: income, bill, allowance or discretionary</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">category.name</p>
+                <p class="type">String</p>
+                <p class="propDesc">Name of the income/bill/allowance. Not required for discretionary</p>
+            </div>
         </div>
 
         <div id="createTransaction" class="route">
@@ -574,6 +586,18 @@ article{
                 <p class="name">note</p>
                 <p class="type">String</p>
                 <p class="propDesc">Any note the user wants to add to the transaction</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">category.type</p>
+                <p class="type">String</p>
+                <p class="propDesc">One of: income, bill, allowance, discretionary</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">category.name</p>
+                <p class="type">String</p>
+                <p class="propDesc">Name of the income/bill/allowance. Not required for discretionary</p>
             </div>
 
             <h3>Response Body</h3>
