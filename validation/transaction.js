@@ -10,6 +10,8 @@ import {CustomError} from "../CustomError.js";
     location
     date
     note
+    category.type
+    category.name
  */
 export default (data)=>{
     if(data.tags){
