@@ -90,6 +90,7 @@ article{
         <a class="headSub" href="#createTransaction">Create</a>
         <a class="headSub" href="#deleteTransaction">Delete</a>
         <a class="headSub" href="#getTransactions">Get</a>
+        <a class="headSub" href="#updateTransaction">Update</a>
     </header>
 
     <article>
@@ -648,6 +649,51 @@ article{
                 <p class="name">N/A</p>
                 <p class="type">[<a href="#transaction">Transaction</a>]</p>
                 <p class="propDesc">List of transactions</p>
+            </div>
+        </div>
+
+        <div id="updateTransaction" class="route">
+            <h1>Update a Transaction</h1>
+            <p class="url">PUT /transaction/:transactionId</p>
+            <p>User Auth Required</p>
+            <p class="description">Update transaction. All fields optional</p>
+
+            <h3>Request Body</h3>
+            <div class="prop">
+                <p class="name">tags</p>
+                <p class="type">[String]</p>
+                <p class="propDesc">List of tags for search purpsoses. Tag list is completely replaced</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">amount</p>
+                <p class="type">Number</p>
+                <p class="propDesc">Integer representing amount in cents</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">location</p>
+                <p class="type">String</p>
+                <p class="propDesc">Location of the transaction</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">date</p>
+                <p class="type">Date</p>
+                <p class="propDesc">Date of the transaction</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">note</p>
+                <p class="type">String</p>
+                <p class="propDesc">Any note about the transaction</p>
+            </div>
+
+            <h3>Response Body</h3>
+            <div class="prop">
+                <p class="name">N/A</p>
+                <p class="type"><a href="#transaction">Transaction</a></p>
+                <p class="propDesc">Transaction object</p>
             </div>
         </div>
     </article>
