@@ -42,6 +42,18 @@ const getRoute = async (req, res, next)=>{
     }catch(e){next(e)}
 }
 
+const updateRoute = async (req, res, next)=>{
+    try{
+        validate(req.body);
+        const {transaction, account} = await getTransaction(req.params.transactionId);
+        verifyAccountOwnership(res.locals.user, transaction.account.toString());
+        if(req.body.amount) updateBalance(account, transaction.amount, req.body.amount);
+        updateTransaction(transaction, req.body);
+        await Promise.all([transaction.save(), account.save()]);
+        res.json(transaction);
+    }catch(e){next(e)}
+}
+
 /*
  Retrieve account from the database
 
@@ -128,6 +140,41 @@ const createTransaction = (data)=>{
 }
 
 /*
+ Update the balance of an account for an updated transaction amount
+
+ @param {Account} account - Account object
+ @param {Number} originalAmount - Original amount on the transaction
+ @param {Number} newAmount - New amount to be updated on the transaction
+ @return {Account} Account object
+ */
+const updateBalance = (account, originalAmount, newAmount)=>{
+    const difference = originalAmount - newAmount;
+    account.balance -= difference;
+    return account;
+}
+
+/*
+ Update the data on a transaction
+
+ @param {Transaction} transaction - Transaction object
+ @param {Object} data - Data to update on the transaction
+ @return {Transaction} - Update transaction object
+ */
+const updateTransaction = (transaction, data)=>{
+    if(data.tags) transaction.tags = data.tags;
+
+    if(data.amount) transaction.amount = data.amount;
+
+    if(data.location) transaction.location = data.location;
+
+    if(data.date) transaction.date = new Date(data.date);
+
+    if(data.note) transaction.note = data.note;
+
+    return transaction;
+}
+
+/*
  Format a transaction into a valid response
 
  @param {Transaction} transaction - Transaction Object
@@ -148,5 +195,6 @@ const responseTransaction = (transaction)=>{
 export {
     createRoute,
     deleteRoute,
-    getRoute
+    getRoute,
+    updateRoute
 }
