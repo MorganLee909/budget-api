@@ -16,18 +16,8 @@ const TransactionSchema = new mongoose.Schema({
         required: false
     },
     date: {
-        year: {
-            type: Number,
-            required: true
-        },
-        month: {
-            type: Number,
-            required: true
-        },
-        day: {
-            type: Number,
-            required: true
-        }
+        type: Date,
+        required: true
     },
     note: {
         type: String,

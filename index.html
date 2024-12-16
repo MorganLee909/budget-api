@@ -89,6 +89,7 @@ article{
         <a class="headMain" href="#transaction">Transaction</a>
         <a class="headSub" href="#createTransaction">Create</a>
         <a class="headSub" href="#deleteTransaction">Delete</a>
+        <a class="headSub" href="#getTransactions">Get</a>
     </header>
 
     <article>
@@ -574,7 +575,7 @@ article{
             <div class="prop">
                 <p class="name">date.month</p>
                 <p class="type">Number</p>
-                <p class="propDesc">Integer between 0 and 11 representing the month of the transaction</p>
+                <p class="propDesc">Integer between 1 and 12 representing the month of the transaction</p>
             </div>
 
             <div class="prop">
@@ -609,7 +610,7 @@ article{
             </div>
         </div>
 
-        <div class="deleteTransaction" class="route">
+        <div id="deleteTransaction" class="route">
             <h1>Delete</h1>
             <p class="url">DELETE /transaction/:transactionId</p>
             <p>User Auth Required</p>
@@ -620,6 +621,33 @@ article{
                 <p class="name">success</p>
                 <p class="type">true</p>
                 <p class="description">Always '{success: true}' if no error</p>
+            </div>
+        </div>
+
+        <div id="getTransactions" class="route">
+            <h1>Get Transactions</h1>
+            <p class="url">GET /account/:accountId/transactions?from&to</p>
+            <p>User Auth Required</p>
+            <p class="description">Retrieve list of transactions on an account between 'from' and 'to'</p>
+
+            <h3>Queries</h3>
+            <div class="prop">
+                <p class="name">from</p>
+                <p class="type">Number</p>
+                <p class="propDesc">Start date of transaction retrieval, inclusive. Format = YYYY-MM-DD</p>
+            </div>
+
+            <div class="prop">
+                <p class="name">to</p>
+                <p class="type">Number</p>
+                <p class="propDesc">End date of transaction retrieval, exclusive. Formate = YYYY-MM-DD</p>
+            </div>
+
+            <h3>Response Body</h3>
+            <div class="prop">
+                <p class="name">N/A</p>
+                <p class="type">[<a href="#transaction">Transaction</a>]</p>
+                <p class="propDesc">List of transactions</p>
             </div>
         </div>
     </article>

@@ -3,6 +3,7 @@ import Account from "../models/account.js";
 
 import validate from "../validation/transaction.js";
 import {CustomError} from "../CustomError.js";
+import mongoose from "mongoose";
 
 const createRoute = async (req, res, next)=>{
     try{
@@ -29,6 +30,18 @@ const deleteRoute = async (req, res, next)=>{
     }catch(e){next(e)}
 }
 
+const getRoute = async (req, res, next)=>{
+    try{
+        verifyAccountOwnership(res.locals.user, req.params.accountId);
+        const transactions = await getTransactionList(
+            req.params.accountId,
+            new Date(req.query.from),
+            new Date(req.query.to)
+        );
+        res.json(transactions);
+    }catch(e){next(e)}
+}
+
 /*
  Retrieve account from the database
 
@@ -49,6 +62,35 @@ const getTransaction = async (transactionId)=>{
     const transaction = await Transaction.findOne({_id: transactionId});
     const account = await getAccount(transaction.account);
     return {transaction, account};
+}
+
+/*
+ Get transactions based on account and dates
+
+ @param {String} account - ID of account
+ @param {Date} from - Starting date for search
+ @param {Date} to - Ending date for search
+ @return {[Transaction]} List of transactions
+ */
+const getTransactionList = async (account, from, to)=>{
+    return await Transaction.aggregate([
+        {$match: {
+            account: new mongoose.Types.ObjectId(account),
+            date: {
+                "$gte": from,
+                "$lt": to
+            }
+        }},
+        {$project: {
+            id: "$_id",
+            tags: 1,
+            amount: 1,
+            location: 1,
+            date: 1,
+            note: 1,
+            category: 1
+        }}
+    ]);
 }
 
 /*
@@ -105,5 +147,6 @@ const responseTransaction = (transaction)=>{
 
 export {
     createRoute,
-    deleteRoute
+    deleteRoute,
+    getRoute
 }
